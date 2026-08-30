@@ -1,80 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stabi Builder</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stabi Community Builder</title>
 <style>
-:root{--bg:#071514;--panel:#0d2422;--panel2:#12332f;--text:#f3fffd;--muted:#a6c8c4;--accent:#79f7d4;--accent2:#c7ff6b;--border:rgba(255,255,255,.12)}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(circle at top,#123a34 0,#071514 42%);color:var(--text);min-height:100vh}
-.app{max-width:1180px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,var(--accent),#2ca88f);display:grid;place-items:center;color:#06201b;font-weight:900;box-shadow:0 8px 30px rgba(121,247,212,.25)}h1{font-size:22px;margin:0}.sub{color:var(--muted);font-size:13px;margin-top:4px}.badge{padding:8px 12px;border:1px solid var(--border);border-radius:999px;color:var(--accent);font-size:12px;background:rgba(255,255,255,.04)}
-.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}.card{background:rgba(10,28,26,.9);border:1px solid var(--border);border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.25)}.preview{padding:18px}.canvasWrap{border-radius:18px;overflow:hidden;aspect-ratio:1/1;background:#173f39;position:relative}.canvasWrap canvas{width:100%;height:100%;display:block}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px}.btn{border:none;border-radius:14px;padding:12px 14px;font-weight:800;cursor:pointer;background:#173b36;color:var(--text);border:1px solid var(--border)}.btn.primary{background:var(--accent);color:#06211b}.btn.secondary{background:var(--accent2);color:#1b2607}.btn:hover{transform:translateY(-1px)}
-.controls{padding:18px}.section{padding:14px 0;border-bottom:1px solid var(--border)}.section:last-child{border-bottom:none}.label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}.row{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:9px 11px;border-radius:12px;border:1px solid var(--border);background:#102c29;color:var(--text);cursor:pointer;font-size:13px}.chip.active{outline:2px solid var(--accent);background:#153a35}.swatch{width:34px;height:34px;border-radius:10px;border:2px solid transparent;cursor:pointer}.swatch.active{border-color:white;box-shadow:0 0 0 2px var(--accent)}input{width:100%;padding:12px 13px;border-radius:13px;border:1px solid var(--border);background:#0b211e;color:white;outline:none}input:focus{border-color:var(--accent)}.footer{color:var(--muted);font-size:12px;text-align:center;margin:18px 0 4px}
-@media(max-width:860px){.grid{grid-template-columns:1fr}.top{align-items:flex-start}.badge{display:none}.actions{grid-template-columns:1fr}.app{padding:14px}.card{border-radius:18px}}
+:root{--bg:#071513;--panel:#0d2421;--line:rgba(255,255,255,.12);--text:#effffc;--muted:#9fc6c0;--mint:#84f3d6;--lime:#d8ff72}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 30% 0,#18433b 0,#071513 45%);color:var(--text);font-family:Inter,system-ui,sans-serif;min-height:100vh}.app{max-width:1180px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.brand{display:flex;gap:12px;align-items:center}.logo{width:44px;height:44px;border-radius:14px;background:var(--mint);color:#08211c;display:grid;place-items:center;font-weight:1000;font-size:22px}h1{font-size:21px;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:4px}.tag{font-size:11px;padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:var(--mint)}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.card{background:rgba(10,29,26,.94);border:1px solid var(--line);border-radius:22px}.preview{padding:16px}.stage{aspect-ratio:1;overflow:hidden;border-radius:18px;background:#143d37;position:relative}.stage canvas{width:100%;height:100%;display:block}.empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:30px;pointer-events:none}.empty strong{display:block;font-size:20px}.empty span{display:block;color:var(--muted);font-size:13px;margin-top:7px}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:12px}.btn,.chip,.upload{border:1px solid var(--line);border-radius:13px;background:#12312d;color:white;font-weight:750;cursor:pointer}.btn{padding:12px}.btn.primary{background:var(--mint);color:#08211c}.btn.lime{background:var(--lime);color:#1a2508}.controls{padding:17px}.section{padding:13px 0;border-bottom:1px solid var(--line)}.section:last-child{border:0}.label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}.row{display:flex;gap:7px;flex-wrap:wrap}.chip{padding:8px 10px;font-size:12px}.chip.active{outline:2px solid var(--mint);background:#19453e}.upload{display:block;text-align:center;padding:13px;background:#143c36}.upload input{display:none}input[type=text]{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:#091f1c;color:white;outline:0}.range{width:100%;accent-color:#84f3d6}.note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:8px}.foot{text-align:center;color:var(--muted);font-size:11px;margin:16px 0}@media(max-width:850px){.grid{grid-template-columns:1fr}.tag{display:none}.app{padding:12px}.actions{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
-<div class="app">
-  <div class="top">
-    <div class="brand"><div class="logo">S</div><div><h1>Stabi Builder</h1><div class="sub">Create your Stabi. Join the community.</div></div></div>
-    <div class="badge">COMMUNITY LAB · V1</div>
-  </div>
-  <div class="grid">
-    <div class="card preview">
-      <div class="canvasWrap"><canvas id="avatar" width="1080" height="1080"></canvas></div>
-      <div class="actions">
-        <button class="btn" id="randomBtn">🎲 Randomize</button>
-        <button class="btn secondary" id="transparentBtn">◫ Transparent PNG</button>
-        <button class="btn primary" id="downloadBtn">↓ Export Card</button>
-      </div>
-    </div>
-    <div class="card controls">
-      <div class="section"><div class="label">Nickname</div><input id="nickname" maxlength="18" value="STABI #0042" /></div>
-      <div class="section"><div class="label">Body Color</div><div class="row" id="colors"></div></div>
-      <div class="section"><div class="label">Expression</div><div class="row" id="expressions"></div></div>
-      <div class="section"><div class="label">Headwear</div><div class="row" id="headwear"></div></div>
-      <div class="section"><div class="label">Accessory</div><div class="row" id="accessories"></div></div>
-      <div class="section"><div class="label">Role Badge</div><div class="row" id="roles"></div></div>
-      <div class="section"><div class="label">Background</div><div class="row" id="backgrounds"></div></div>
-    </div>
-  </div>
-  <div class="footer">Fan-made community prototype · Replace the placeholder mascot layers with official Stabi art later.</div>
-</div>
+<body><div class="app">
+<div class="top"><div class="brand"><div class="logo">S</div><div><h1>Stabi Community Builder</h1><div class="sub">Create your Stabi. Make it yours.</div></div></div><div class="tag">COMMUNITY LAB · V1</div></div>
+<div class="grid">
+<div class="card preview"><div class="stage"><canvas id="c" width="1080" height="1080"></canvas><div class="empty" id="empty"><div><strong>Upload your Stabi base</strong><span>One transparent PNG is enough to start.</span></div></div></div><div class="actions"><button class="btn" id="random">🎲 Randomize</button><button class="btn lime" id="avatar">◫ Avatar PNG</button><button class="btn primary" id="card">↓ Export Card</button></div></div>
+<div class="card controls">
+<div class="section"><div class="label">Base Mascot</div><label class="upload">＋ Choose Stabi Image<input id="file" type="file" accept="image/png,image/webp,image/jpeg"></label><div class="note">Use the Stabi image you already have. The builder does not generate or replace the mascot.</div></div>
+<div class="section"><div class="label">Nickname</div><input type="text" id="name" maxlength="20" value="MY STABI"></div>
+<div class="section"><div class="label">Background</div><div class="row" id="bgs"></div></div>
+<div class="section"><div class="label">Aura</div><div class="row" id="auras"></div></div>
+<div class="section"><div class="label">Frame</div><div class="row" id="frames"></div></div>
+<div class="section"><div class="label">Community Badge</div><div class="row" id="roles"></div></div>
+<div class="section"><div class="label">Extra Item</div><div class="row" id="items"></div></div>
+<div class="section"><div class="label">Mascot Size</div><input class="range" id="scale" type="range" min="55" max="105" value="86"></div>
+</div></div><div class="foot">Fan-made community tool · bring your own Stabi art.</div></div>
 <script>
-const canvas=document.getElementById('avatar'),ctx=canvas.getContext('2d');
-const state={color:'#79f7d4',expression:'Happy',headwear:'None',accessory:'Shield',role:'Stabilitician',bg:'Deep Teal',nickname:'STABI #0042'};
-const colors=['#79f7d4','#7cc8ff','#c795ff','#ffd56f','#ff8fa3','#e7ff8a'];
-const expressions=['Happy','Cool','Focused','Sleepy'];
-const headwear=['None','Cap','Halo','Cyber'];
-const accessories=['None','Shield','Sword','USDZ','Laptop'];
-const roles=['Community','Beta Tester','Stabilitician','Stabiligner','StabiliInsight'];
-const bgs={'Deep Teal':['#0f3f38','#081e1b'],'Mint Grid':['#9af7d9','#0b342c'],'Night':['#12162c','#050711'],'Sunset':['#ffb66b','#5d275e']};
-function rounded(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=8;ctx.stroke()}}
-function draw(transparent=false){ctx.clearRect(0,0,1080,1080);if(!transparent){let g=ctx.createLinearGradient(0,0,1080,1080);let bg=bgs[state.bg];g.addColorStop(0,bg[0]);g.addColorStop(1,bg[1]);ctx.fillStyle=g;ctx.fillRect(0,0,1080,1080);ctx.globalAlpha=.12;for(let i=0;i<18;i++){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(540,500,120+i*26,0,Math.PI*2);ctx.stroke()}ctx.globalAlpha=1}
-ctx.globalAlpha=.22;ctx.fillStyle='#000';ctx.beginPath();ctx.ellipse(540,860,240,48,0,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
-ctx.fillStyle=state.color;ctx.strokeStyle='#082824';ctx.lineWidth=18;ctx.beginPath();ctx.roundRect(340,270,400,500,150);ctx.fill();ctx.stroke();
-rounded(300,390,85,210,42,state.color,'#082824');rounded(695,390,85,210,42,state.color,'#082824');
-rounded(390,350,300,205,74,'#082824');
-ctx.fillStyle='#eafffb';if(state.expression==='Sleepy'){ctx.lineWidth=14;ctx.strokeStyle='#eafffb';ctx.beginPath();ctx.moveTo(440,445);ctx.lineTo(500,445);ctx.moveTo(580,445);ctx.lineTo(640,445);ctx.stroke()}else{ctx.beginPath();ctx.arc(475,430,26,0,Math.PI*2);ctx.arc(605,430,26,0,Math.PI*2);ctx.fill();if(state.expression==='Cool'){ctx.fillStyle='#082824';ctx.fillRect(430,410,90,34);ctx.fillRect(560,410,90,34)}}
-ctx.strokeStyle='#eafffb';ctx.lineWidth=13;ctx.lineCap='round';ctx.beginPath();if(state.expression==='Focused'){ctx.moveTo(480,505);ctx.lineTo(600,505)}else{ctx.arc(540,485,58,.15*Math.PI,.85*Math.PI)}ctx.stroke();
-rounded(390,720,105,150,45,state.color,'#082824');rounded(585,720,105,150,45,state.color,'#082824');
-ctx.fillStyle='#082824';ctx.font='900 82px system-ui';ctx.textAlign='center';ctx.fillText('S',540,680);
-if(state.headwear==='Cap'){ctx.fillStyle='#0c2925';ctx.beginPath();ctx.arc(535,300,140,Math.PI,Math.PI*2);ctx.fill();rounded(525,275,190,42,20,'#0c2925')}if(state.headwear==='Halo'){ctx.strokeStyle='#e7ff8a';ctx.lineWidth=18;ctx.beginPath();ctx.ellipse(540,245,150,40,0,0,Math.PI*2);ctx.stroke()}if(state.headwear==='Cyber'){ctx.strokeStyle='#7cc8ff';ctx.lineWidth=16;ctx.beginPath();ctx.moveTo(390,335);ctx.lineTo(340,265);ctx.lineTo(405,285);ctx.moveTo(690,335);ctx.lineTo(745,265);ctx.lineTo(675,285);ctx.stroke()}
-if(state.accessory==='Shield'){ctx.fillStyle='#c8fff1';ctx.strokeStyle='#082824';ctx.lineWidth=15;ctx.beginPath();ctx.moveTo(770,560);ctx.lineTo(930,610);ctx.lineTo(900,770);ctx.lineTo(850,830);ctx.lineTo(800,770);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='#0f6053';ctx.font='900 54px system-ui';ctx.fillText('0%',850,705)}
-if(state.accessory==='Sword'){ctx.strokeStyle='#dffff5';ctx.lineWidth=28;ctx.beginPath();ctx.moveTo(810,780);ctx.lineTo(940,430);ctx.stroke();ctx.strokeStyle='#082824';ctx.lineWidth=18;ctx.beginPath();ctx.moveTo(780,720);ctx.lineTo(875,760);ctx.stroke()}
-if(state.accessory==='USDZ'){ctx.fillStyle='#fff';ctx.strokeStyle='#082824';ctx.lineWidth=15;ctx.beginPath();ctx.arc(850,680,92,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#0e6758';ctx.font='900 52px system-ui';ctx.fillText('USDZ',850,697)}
-if(state.accessory==='Laptop'){rounded(760,620,220,140,22,'#d8f7f0','#082824');ctx.fillStyle='#0e6758';ctx.font='900 54px system-ui';ctx.fillText('S',870,710)}
-rounded(80,75,330,82,34,'rgba(5,25,22,.72)','rgba(255,255,255,.18)');ctx.fillStyle='#bfffee';ctx.font='700 28px system-ui';ctx.textAlign='left';ctx.fillText(state.role.toUpperCase(),115,126);
-if(!transparent){ctx.textAlign='center';ctx.fillStyle='#fff';ctx.font='900 64px system-ui';ctx.fillText(state.nickname||'STABI',540,960);ctx.fillStyle='rgba(255,255,255,.72)';ctx.font='600 25px system-ui';ctx.fillText('CREATE YOUR STABI · COMMUNITY EDITION',540,1005)}
-}
-function makeChips(id,items,key){const el=document.getElementById(id);items.forEach(v=>{let b=document.createElement('button');b.className='chip'+(state[key]===v?' active':'');b.textContent=v;b.onclick=()=>{state[key]=v;[...el.children].forEach(x=>x.classList.remove('active'));b.classList.add('active');draw()};el.appendChild(b)})}
-const ce=document.getElementById('colors');colors.forEach(v=>{let b=document.createElement('button');b.className='swatch'+(state.color===v?' active':'');b.style.background=v;b.onclick=()=>{state.color=v;[...ce.children].forEach(x=>x.classList.remove('active'));b.classList.add('active');draw()};ce.appendChild(b)});
-makeChips('expressions',expressions,'expression');makeChips('headwear',headwear,'headwear');makeChips('accessories',accessories,'accessory');makeChips('roles',roles,'role');makeChips('backgrounds',Object.keys(bgs),'bg');
-document.getElementById('nickname').addEventListener('input',e=>{state.nickname=e.target.value;draw()});
-document.getElementById('randomBtn').onclick=()=>{state.color=colors[Math.floor(Math.random()*colors.length)];state.expression=expressions[Math.floor(Math.random()*expressions.length)];state.headwear=headwear[Math.floor(Math.random()*headwear.length)];state.accessory=accessories[Math.floor(Math.random()*accessories.length)];state.role=roles[Math.floor(Math.random()*roles.length)];state.bg=Object.keys(bgs)[Math.floor(Math.random()*Object.keys(bgs).length)];rebuildUI();draw()};
-function rebuildUI(){document.querySelectorAll('.chip,.swatch').forEach(x=>x.classList.remove('active'));[...document.getElementById('colors').children].forEach((x,i)=>{if(colors[i]===state.color)x.classList.add('active')});[['expressions','expression'],['headwear','headwear'],['accessories','accessory'],['roles','role'],['backgrounds','bg']].forEach(([id,key])=>[...document.getElementById(id).children].forEach(x=>{if(x.textContent===state[key])x.classList.add('active')}))}
-function save(transparent,name){draw(transparent);let a=document.createElement('a');a.download=name;a.href=canvas.toDataURL('image/png');a.click();draw(false)}
-document.getElementById('downloadBtn').onclick=()=>save(false,'my-stabi-card.png');document.getElementById('transparentBtn').onclick=()=>save(true,'my-stabi-avatar.png');draw();
-</script>
-</body>
-</html>
+const c=document.getElementById('c'),x=c.getContext('2d'),empty=document.getElementById('empty');
+let base=null;const S={bg:'Deep Teal',aura:'Mint Glow',frame:'Soft',role:'Community',item:'None',name:'MY STABI',scale:86};
+const BG={'Deep Teal':['#0d4a42','#071b18'],'Ocean':['#4fd6ee','#17345e'],'Night':['#171936','#080912'],'Mint':['#b8ffe7','#1c6759'],'Sunset':['#ffc981','#6b315f']};
+const A=['None','Mint Glow','Blue Glow','Star Ring'];const F=['None','Soft','Tech','Polaroid'];const R=['Community','Beta Tester','Stabilitician','Stabiligner','StabiliInsight'];const I=['None','Zero Slippage','USDZ','Shield','Sparkles'];
+function chips(id,arr,key){let el=document.getElementById(id);arr.forEach(v=>{let b=document.createElement('button');b.className='chip'+(S[key]===v?' active':'');b.textContent=v;b.onclick=()=>{S[key]=v;[...el.children].forEach(q=>q.classList.remove('active'));b.classList.add('active');draw()};el.appendChild(b)})}
+chips('bgs',Object.keys(BG),'bg');chips('auras',A,'aura');chips('frames',F,'frame');chips('roles',R,'role');chips('items',I,'item');
+function rr(a,b,r){x.beginPath();x.roundRect(a,b,r,r,28)}
+function background(){let g=x.createLinearGradient(0,0,1080,1080),v=BG[S.bg];g.addColorStop(0,v[0]);g.addColorStop(1,v[1]);x.fillStyle=g;x.fillRect(0,0,1080,1080);x.globalAlpha=.12;x.strokeStyle='#fff';x.lineWidth=2;for(let i=0;i<12;i++){x.beginPath();x.arc(540,510,170+i*45,0,Math.PI*2);x.stroke()}x.globalAlpha=1}
+function aura(){if(S.aura==='None')return;x.save();if(S.aura==='Star Ring'){x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=6;x.setLineDash([8,22]);x.beginPath();x.arc(540,520,375,0,Math.PI*2);x.stroke();x.restore();return}let col=S.aura==='Blue Glow'?'#65cfff':'#88ffd9';x.shadowColor=col;x.shadowBlur=85;x.strokeStyle=col;x.globalAlpha=.5;x.lineWidth=38;x.beginPath();x.arc(540,520,310,0,Math.PI*2);x.stroke();x.restore()}
+function mascot(){if(!base)return;let max=760*(S.scale/86),ratio=Math.min(max/base.width,max/base.height),w=base.width*ratio,h=base.height*ratio;x.drawImage(base,540-w/2,555-h/2,w,h)}
+function badge(){x.save();x.fillStyle='rgba(5,22,20,.75)';x.strokeStyle='rgba(255,255,255,.18)';x.lineWidth=3;x.beginPath();x.roundRect(65,62,360,74,28);x.fill();x.stroke();x.fillStyle='#c7fff0';x.font='700 26px system-ui';x.textAlign='left';x.fillText(S.role.toUpperCase(),100,108);x.restore()}
+function item(){x.save();x.textAlign='center';if(S.item==='Zero Slippage'){x.fillStyle='#d8ff72';x.font='900 27px system-ui';x.fillText('ZERO SLIPPAGE',865,750);x.font='900 70px system-ui';x.fillText('0%',865,820)}if(S.item==='USDZ'){x.fillStyle='#fff';x.strokeStyle='#0d5b50';x.lineWidth=10;x.beginPath();x.arc(870,760,90,0,Math.PI*2);x.fill();x.stroke();x.fillStyle='#116b5d';x.font='900 40px system-ui';x.fillText('USDZ',870,774)}if(S.item==='Shield'){x.fillStyle='rgba(190,255,238,.92)';x.strokeStyle='#0b4d43';x.lineWidth=10;x.beginPath();x.moveTo(790,685);x.lineTo(940,715);x.lineTo(915,845);x.lineTo(865,900);x.lineTo(815,845);x.closePath();x.fill();x.stroke();x.fillStyle='#0b5b4d';x.font='900 52px system-ui';x.fillText('S',865,815)}if(S.item==='Sparkles'){x.fillStyle='#fff';x.font='70px system-ui';x.fillText('✦',230,330);x.fillText('✦',880,420);x.font='45px system-ui';x.fillText('✦',830,250);x.fillText('✦',280,730)}x.restore()}
+function frame(){x.save();if(S.frame==='Soft'){x.strokeStyle='rgba(255,255,255,.34)';x.lineWidth=10;x.beginPath();x.roundRect(30,30,1020,1020,55);x.stroke()}if(S.frame==='Tech'){x.strokeStyle='#91ffe0';x.lineWidth=9;[[45,45,160,45],[45,45,45,160],[1035,45,920,45],[1035,45,1035,160],[45,1035,160,1035],[45,1035,45,920],[1035,1035,920,1035],[1035,1035,1035,920]].forEach(v=>{x.beginPath();x.moveTo(v[0],v[1]);x.lineTo(v[2],v[3]);x.stroke()})}if(S.frame==='Polaroid'){x.strokeStyle='#fff';x.lineWidth=35;x.beginPath();x.roundRect(25,25,1030,1030,20);x.stroke()}x.restore()}
+function title(show=true){if(!show)return;x.save();x.textAlign='center';x.fillStyle='#fff';x.font='900 58px system-ui';x.fillText(S.name||'MY STABI',540,955);x.fillStyle='rgba(255,255,255,.75)';x.font='600 23px system-ui';x.fillText('STABI COMMUNITY EDITION',540,1000);x.restore()}
+function draw(transparent=false){x.clearRect(0,0,1080,1080);if(!transparent)background();aura();mascot();badge();item();frame();title(!transparent);empty.style.display=base?'none':'grid'}
+document.getElementById('file').onchange=e=>{let f=e.target.files[0];if(!f)return;let u=URL.createObjectURL(f),im=new Image;im.onload=()=>{base=im;URL.revokeObjectURL(u);draw()};im.src=u};
+document.getElementById('name').oninput=e=>{S.name=e.target.value;draw()};document.getElementById('scale').oninput=e=>{S.scale=+e.target.value;draw()};
+function sync(){[['bgs','bg'],['auras','aura'],['frames','frame'],['roles','role'],['items','item']].forEach(([id,k])=>[...document.getElementById(id).children].forEach(b=>b.classList.toggle('active',b.textContent===S[k])))}
+document.getElementById('random').onclick=()=>{S.bg=Object.keys(BG)[Math.floor(Math.random()*5)];S.aura=A[Math.floor(Math.random()*A.length)];S.frame=F[Math.floor(Math.random()*F.length)];S.role=R[Math.floor(Math.random()*R.length)];S.item=I[Math.floor(Math.random()*I.length)];sync();draw()};
+function save(t,n){if(!base){alert('Upload a Stabi image first.');return}draw(t);let a=document.createElement('a');a.download=n;a.href=c.toDataURL('image/png');a.click();draw()}
+document.getElementById('avatar').onclick=()=>save(true,'my-stabi-avatar.png');document.getElementById('card').onclick=()=>save(false,'my-stabi-card.png');draw();
+</script></body></html>
